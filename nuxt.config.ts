@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: "2024-11-01",
     devtools: { enabled: true },
@@ -17,5 +16,17 @@ export default defineNuxtConfig({
             },
         ],
         "@vueuse/motion/nuxt",
+        [
+            "@nuxtjs/i18n",
+            {
+                locales: [
+                    { code: "en", language: "en-US", file: "en.json" },
+                    { code: "es", language: "es-ES", file: "es.json" },
+                ],
+                defaultLocale: "en",
+                strategy: "no_prefix",
+                lazy: true,
+            },
+        ],
     ],
 });

@@ -1,0 +1,11 @@
+{
+    "pages": {
+        "auth": {
+            "login": {
+                "welcomeMessage": "Welcome to our platform",
+                "welcomeDescription": "",
+                "features": []
+            }
+        }
+    }
+}

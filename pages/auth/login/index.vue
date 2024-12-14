@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { CheckCircle } from "lucide-vue-next";
+    import { CheckCircle, ArrowRight } from "lucide-vue-next";
 </script>
 
 <template>
@@ -41,7 +41,7 @@
                     <div class="rounded-md shadow-sm space-y-px">
                         <div>
                             <label htmlFor="email-address" class="sr-only"
-                                >Correo Electrónico</label
+                                >Email</label
                             >
                             <Input
                                 id="email-address"
@@ -55,7 +55,7 @@
                         </div>
                         <div>
                             <label htmlFor="password" class="sr-only"
-                                >Contraseña</label
+                                >Password</label
                             >
                             <Input
                                 id="password"
