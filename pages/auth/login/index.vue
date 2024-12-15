@@ -1,5 +1,9 @@
 <script setup lang="ts">
     import { CheckCircle, ArrowRight } from "lucide-vue-next";
+    import { toTypedSchema } from "@vee-validate/zod";
+    import { useForm } from "vee-validate";
+    import { cn } from "@/lib/utils";
+    import { z } from "zod";
 
     const { setLocale, t } = useI18n();
 
@@ -7,6 +11,50 @@
         title() {
             return t("pages.auth.login.title");
         },
+    });
+
+    const schema = computed(() =>
+        z.object({
+            email: z
+                .string()
+                .min(1, { message: t("pages.auth.login.form.email.zod.required") })
+                .email({ message: t("pages.auth.login.form.email.zod.validation") }),
+            password: z.string().min(1, {
+                message: t("pages.auth.login.form.password.zod.required"),
+            }),
+        }),
+    );
+
+    const validationSchema = computed(() => toTypedSchema(schema.value));
+
+    const { errors } = useForm({
+        validationSchema,
+        initialValues: Object.fromEntries(
+            Object.keys(schema.value.shape).map((key) => [key, ""]),
+        ),
+    });
+
+    const formFields = computed<FormField<z.infer<typeof schema.value>>[]>(
+        () => [
+            {
+                name: "email",
+                label: t("pages.auth.login.form.email.label"),
+                type: "email",
+                autocomplete: "email",
+            },
+            {
+                name: "password",
+                label: t("pages.auth.login.form.password.label"),
+                type: "password",
+                autocomplete: "current-password",
+            },
+        ],
+    );
+
+    onMounted(() => {
+        const colorMode = useColorMode();
+
+        colorMode.preference = "light";
     });
 </script>
 
@@ -51,42 +99,58 @@
                 </div>
                 <form class="mt-8 space-y-6">
                     <div class="rounded-md shadow-sm space-y-px">
-                        <div>
-                            <label htmlFor="email-address" class="sr-only">{{
-                                $t("pages.auth.login.form.email.label")
-                            }}</label>
-                            <Input
-                                id="email-address"
-                                name="email"
-                                type="email"
-                                autocomplete="email"
-                                required
-                                class="rounded-t-md"
-                                :placeholder="
-                                    $t(
-                                        'pages.auth.login.form.email.placeholder',
-                                    )
-                                "
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password" class="sr-only">{{
-                                $t("pages.auth.login.form.password.label")
-                            }}</label>
-                            <Input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autocomplete="current-password"
-                                required
-                                class="rounded-b-md"
-                                :placeholder="
-                                    $t(
-                                        'pages.auth.login.form.password.placeholder',
-                                    )
-                                "
-                            />
-                        </div>
+                        <FormField
+                            v-for="field in formFields"
+                            v-slot="{ componentField }"
+                            :key="field.name"
+                            :name="field.name"
+                        >
+                            <FormItem>
+                                <FormLabel
+                                    :class="
+                                        cn({
+                                            'dark:text-foreground':
+                                                errors[field.name],
+                                        })
+                                    "
+                                    >{{ field.label }}</FormLabel
+                                >
+
+                                <FormControl>
+                                    <Input
+                                        :type="field.type"
+                                        v-bind="componentField"
+                                        :autocomplete="field.autocomplete"
+                                        :class="
+                                            cn('dark:bg-gray-700', {
+                                                'border-rose-500 dark:border-orange-400 border-2':
+                                                    errors[field.name],
+                                            })
+                                        "
+                                    />
+                                </FormControl>
+
+                                <template v-if="field.description">
+                                    <FormDescription>
+                                        {{ field.description }}
+                                    </FormDescription>
+                                </template>
+
+                                <Motion
+                                    :initial="{ opacity: 0, x: 0 }"
+                                    :enter="{
+                                        opacity: 1,
+                                        x: [0, -10, 10, -10, 10, 0],
+                                        transition: {
+                                            duration: 500,
+                                            type: 'keyframes',
+                                        },
+                                    }"
+                                >
+                                    <FormMessage class="dark:text-orange-400" />
+                                </Motion>
+                            </FormItem>
+                        </FormField>
                     </div>
 
                     <div class="flex items-center justify-between">

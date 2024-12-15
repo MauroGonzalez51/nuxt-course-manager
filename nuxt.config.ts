@@ -28,5 +28,6 @@ export default defineNuxtConfig({
                 lazy: true,
             },
         ],
+        ["@vee-validate/nuxt", { autoImports: false }],
     ],
 });

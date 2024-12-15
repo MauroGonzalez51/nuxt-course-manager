@@ -9,11 +9,18 @@
                 "form": {
                     "email": {
                         "label": "Correo electronico",
-                        "placeholder": "correo-electronico"
+                        "placeholder": "correo-electronico",
+                        "zod": {
+                            "required": "El correo electronico es obligatorio",
+                            "validation": "Debe ser un correo electronico valido"
+                        }
                     },
                     "password": {
                         "label": "Contraseña",
-                        "placeholder": "tu-contraseña-super-segura"
+                        "placeholder": "tu-contraseña-super-segura",
+                        "zod": {
+                            "required": "La contraseña es obligatoria"
+                        }
                     },
                     "button": {
                         "remind_me": "Recuerdame",

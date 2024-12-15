@@ -9,11 +9,18 @@
                 "form": {
                     "email": {
                         "label": "Email",
-                        "placeholder": "Email ..."
+                        "placeholder": "Email ...",
+                        "zod": {
+                            "required": "Email is required",
+                            "validation": "Must be a valid email"
+                        }
                     },
                     "password": {
                         "label": "Password",
-                        "placeholder": "Password..."
+                        "placeholder": "Password...",
+                        "zod": {
+                            "required": "Password is required"
+                        }
                     },
                     "button": {
                         "remind_me": "Remind me",
