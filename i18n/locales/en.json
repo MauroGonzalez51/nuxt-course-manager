@@ -2,9 +2,27 @@
     "pages": {
         "auth": {
             "login": {
-                "welcomeMessage": "Welcome to our platform",
-                "welcomeDescription": "",
-                "features": []
+                "title": "Login",
+                "welcome_message": "Welcome to our platform",
+                "welcome_description": "Lorem Ipsum dolor sit amet",
+                "features": ["Feature 1", "Feature 2", "Feature 3"],
+                "form": {
+                    "email": {
+                        "label": "Email",
+                        "placeholder": "Email ..."
+                    },
+                    "password": {
+                        "label": "Password",
+                        "placeholder": "Password..."
+                    },
+                    "button": {
+                        "remind_me": "Remind me",
+                        "submit": "Login"
+                    },
+                    "link": {
+                        "forgot_password": "Forgot your password?"
+                    }
+                }
             }
         }
     }

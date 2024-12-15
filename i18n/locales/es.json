@@ -1,3 +1,29 @@
 {
-    "test": "test"
+    "pages": {
+        "auth": {
+            "login": {
+                "title": "Iniciar sesion",
+                "welcome_message": "Bienvenido a nuestra plataforma",
+                "welcome_description": "Lorem Ipsum dolor sit amet",
+                "features": ["Funcion 1", "Funcion 2", "Funcion 3"],
+                "form": {
+                    "email": {
+                        "label": "Correo electronico",
+                        "placeholder": "correo-electronico"
+                    },
+                    "password": {
+                        "label": "Contraseña",
+                        "placeholder": "tu-contraseña-super-segura"
+                    },
+                    "button": {
+                        "remind_me": "Recuerdame",
+                        "submit": "Iniciar sesion"
+                    },
+                    "link": {
+                        "forgot_password": "Olvidaste tu contraseña"
+                    }
+                }
+            }
+        }
+    }
 }

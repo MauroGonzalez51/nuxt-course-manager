@@ -1,5 +1,13 @@
 <script setup lang="ts">
     import { CheckCircle, ArrowRight } from "lucide-vue-next";
+
+    const { setLocale, t } = useI18n();
+
+    useHead({
+        title() {
+            return t("pages.auth.login.title");
+        },
+    });
 </script>
 
 <template>
@@ -9,17 +17,19 @@
         >
             <div class="max-w-md z-10">
                 <h1 class="text-4xl font-bold mb-6 text-gray-800 break-words">
-                    ('welcome-message')
+                    {{ $t("pages.auth.login.welcome_message") }}
                 </h1>
-                <p class="text-gray-600 mb-8">('welcome-description')</p>
+                <p class="text-gray-600 mb-8">
+                    {{ $t("pages.auth.login.welcome_description") }}
+                </p>
                 <div class="space-y-4">
                     <div
-                        v-for="item in ['feature-1', 'feature-2', 'feature-3']"
+                        v-for="item in $tm('pages.auth.login.features')"
                         :key="item"
                         class="flex items-center space-x-2"
                     >
                         <CheckCircle class="text-green-500" />
-                        <span class="text-gray-700">{{ item }}</span>
+                        <span class="text-gray-700">{{ $rt(item) }}</span>
                     </div>
                 </div>
             </div>
@@ -35,14 +45,16 @@
         <aside class="w-full flex items-center justify-center p-12 bg-white">
             <div class="w-full max-w-md space-y-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Login</h2>
+                    <h2 class="text-3xl font-bold text-gray-900">
+                        {{ $t("pages.auth.login.title") }}
+                    </h2>
                 </div>
                 <form class="mt-8 space-y-6">
                     <div class="rounded-md shadow-sm space-y-px">
                         <div>
-                            <label htmlFor="email-address" class="sr-only"
-                                >Email</label
-                            >
+                            <label htmlFor="email-address" class="sr-only">{{
+                                $t("pages.auth.login.form.email.label")
+                            }}</label>
                             <Input
                                 id="email-address"
                                 name="email"
@@ -50,13 +62,17 @@
                                 autocomplete="email"
                                 required
                                 class="rounded-t-md"
-                                placeholder="Email..."
+                                :placeholder="
+                                    $t(
+                                        'pages.auth.login.form.email.placeholder',
+                                    )
+                                "
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" class="sr-only"
-                                >Password</label
-                            >
+                            <label htmlFor="password" class="sr-only">{{
+                                $t("pages.auth.login.form.password.label")
+                            }}</label>
                             <Input
                                 id="password"
                                 name="password"
@@ -64,7 +80,11 @@
                                 autocomplete="current-password"
                                 required
                                 class="rounded-b-md"
-                                placeholder="Password..."
+                                :placeholder="
+                                    $t(
+                                        'pages.auth.login.form.password.placeholder',
+                                    )
+                                "
                             />
                         </div>
                     </div>
@@ -81,7 +101,9 @@
                                 htmlFor="remember-me"
                                 class="ml-2 block text-sm text-gray-900"
                             >
-                                Remind me
+                                {{
+                                    $t("pages.auth.login.form.button.remind_me")
+                                }}
                             </label>
                         </div>
 
@@ -90,7 +112,11 @@
                                 href="#"
                                 class="font-medium text-blue-600 hover:text-blue-500"
                             >
-                                Forgot your password?
+                                {{
+                                    $t(
+                                        "pages.auth.login.form.link.forgot_password",
+                                    )
+                                }}
                             </a>
                         </div>
                     </div>
@@ -107,10 +133,14 @@
                                     aria-hidden="true"
                                 />
                             </span>
-                            Login
+                            {{ $t("pages.auth.login.form.button.submit") }}
                         </Button>
                     </div>
                 </form>
+                <div>
+                    <Button @click="setLocale('en')"> EN </Button>
+                    <Button @click="setLocale('es')">ES</Button>
+                </div>
             </div>
         </aside>
     </main>
