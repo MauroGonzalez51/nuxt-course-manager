@@ -17,8 +17,12 @@
         z.object({
             email: z
                 .string()
-                .min(1, { message: t("pages.auth.login.form.email.zod.required") })
-                .email({ message: t("pages.auth.login.form.email.zod.validation") }),
+                .min(1, {
+                    message: t("pages.auth.login.form.email.zod.required"),
+                })
+                .email({
+                    message: t("pages.auth.login.form.email.zod.validation"),
+                }),
             password: z.string().min(1, {
                 message: t("pages.auth.login.form.password.zod.required"),
             }),

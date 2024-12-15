@@ -1,3 +1,5 @@
+import type { InputHTMLAttributes } from "vue";
+
 declare global {
     interface FormField<T extends object> {
         name: keyof T;
