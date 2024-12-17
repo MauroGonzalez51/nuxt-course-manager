@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { CheckCircle, ArrowRight } from "lucide-vue-next";
     import { toTypedSchema } from "@vee-validate/zod";
+    import { useToast } from "@/components/ui/toast";
     import { useForm } from "vee-validate";
     import { cn } from "@/lib/utils";
     import { z } from "zod";
@@ -31,7 +32,7 @@
 
     const validationSchema = computed(() => toTypedSchema(schema.value));
 
-    const { errors } = useForm({
+    const { errors, handleSubmit } = useForm({
         validationSchema,
         initialValues: Object.fromEntries(
             Object.keys(schema.value.shape).map((key) => [key, ""]),
@@ -54,6 +55,33 @@
             },
         ],
     );
+
+    const onSubmit = handleSubmit(async (values) => {
+        const { email, password } = values;
+
+        const supabase = useSupabaseClient();
+        const { toast } = useToast();
+
+        const { data: signUpData, error: signUpError } =
+            await supabase.auth.signUp({
+                email,
+                password,
+            });
+
+        if (signUpError) {
+            toast({
+                title: "Error during signUp",
+                description: signUpError.message,
+                variant: "destructive",
+            });
+
+            return;
+        }
+
+        const { user } = signUpData;
+
+        supabase.from('users').insert({ })
+    });
 
     onMounted(() => {
         const colorMode = useColorMode();
@@ -101,7 +129,7 @@
                         {{ $t("pages.auth.login.title") }}
                     </h2>
                 </div>
-                <form class="mt-8 space-y-6">
+                <form class="mt-8 space-y-6" @submit="onSubmit">
                     <div class="rounded-md shadow-sm space-y-px">
                         <FormField
                             v-for="field in formFields"
