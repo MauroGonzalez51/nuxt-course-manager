@@ -1,41 +1,43 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@nuxt/eslint": "^0.7.3",
-    "@nuxt/icon": "^1.10.1",
-    "@nuxtjs/color-mode": "^3.5.2",
-    "@nuxtjs/i18n": "^9.1.1",
-    "@nuxtjs/supabase": "^1.4.4",
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "@vee-validate/nuxt": "^4.14.7",
-    "@vee-validate/zod": "^4.14.7",
-    "@vueuse/core": "^12.0.0",
-    "@vueuse/motion": "^2.2.6",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "eslint": "^9.16.0",
-    "lucide-vue-next": "^0.468.0",
-    "nuxt": "^3.14.1592",
-    "radix-vue": "^1.9.11",
-    "shadcn-nuxt": "^0.11.3",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7",
-    "vee-validate": "^4.14.7",
-    "vue": "latest",
-    "vue-router": "latest",
-    "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "prettier": "^3.4.2",
-    "supabase": "^2.0.0"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "dev:supabase:types": "supabase gen types typescript --local > types/database.d.ts",
+        "dev:supabase:create-migration": "supabase migration new $1",
+        "dev:supabase:push-migration": "supabase --local db push"
+    },
+    "dependencies": {
+        "@nuxt/eslint": "^0.7.3",
+        "@nuxt/icon": "^1.10.1",
+        "@nuxtjs/color-mode": "^3.5.2",
+        "@nuxtjs/i18n": "^9.1.1",
+        "@nuxtjs/supabase": "^1.4.4",
+        "@nuxtjs/tailwindcss": "^6.12.2",
+        "@vee-validate/nuxt": "^4.14.7",
+        "@vee-validate/zod": "^4.14.7",
+        "@vueuse/core": "^12.0.0",
+        "@vueuse/motion": "^2.2.6",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "eslint": "^9.16.0",
+        "lucide-vue-next": "^0.468.0",
+        "nuxt": "^3.14.1592",
+        "radix-vue": "^1.9.11",
+        "shadcn-nuxt": "^0.11.3",
+        "tailwind-merge": "^2.5.5",
+        "tailwindcss-animate": "^1.0.7",
+        "vee-validate": "^4.14.7",
+        "vue": "latest",
+        "vue-router": "latest",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "prettier": "^3.4.2"
+    }
 }

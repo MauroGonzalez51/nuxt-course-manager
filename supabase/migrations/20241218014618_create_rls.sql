@@ -1,0 +1,8 @@
+ALTER TABLE "roles" ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users"
+ON "roles"
+AS PERMISSIVE
+FOR SELECT 
+TO PUBLIC
+USING (true);
