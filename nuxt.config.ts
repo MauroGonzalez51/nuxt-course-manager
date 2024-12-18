@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         [
             "@nuxtjs/supabase",
             {
+                redirect: false,
                 redirectOptions: {
                     login: "/auth/login",
                 },

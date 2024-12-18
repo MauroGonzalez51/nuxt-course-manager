@@ -185,9 +185,7 @@
                                 class="font-medium text-blue-600 hover:text-blue-500"
                             >
                                 {{
-                                    $t(
-                                        "pages.auth.login.form.link.forgot_password",
-                                    )
+                                    $t("pages.auth.login.link.forgot_password")
                                 }}
                             </a>
                         </div>
@@ -209,6 +207,20 @@
                         </Button>
                     </div>
                 </form>
+
+                <div class="text-sm">
+                    {{ $t("pages.auth.login.link.register.text") }}
+                    <Button
+                        as-child
+                        variant="link"
+                        class="px-0 text-orange-500 cursor-pointer"
+                    >
+                        <NuxtLink to="/auth/signup">
+                            {{ $t("pages.auth.login.link.register.button") }}
+                        </NuxtLink>
+                    </Button>
+                </div>
+
                 <div>
                     <Button @click="setLocale('en')"> EN </Button>
                     <Button @click="setLocale('es')">ES</Button>

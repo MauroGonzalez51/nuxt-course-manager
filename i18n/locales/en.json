@@ -25,9 +25,13 @@
                     "button": {
                         "remind_me": "Remind me",
                         "submit": "Login"
-                    },
-                    "link": {
-                        "forgot_password": "Forgot your password?"
+                    }
+                },
+                "link": {
+                    "forgot_password": "Forgot your password?",
+                    "register": {
+                        "text": "Don't have an account?",
+                        "button": "Register"
                     }
                 }
             }

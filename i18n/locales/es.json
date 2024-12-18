@@ -25,9 +25,13 @@
                     "button": {
                         "remind_me": "Recuerdame",
                         "submit": "Iniciar sesion"
-                    },
-                    "link": {
-                        "forgot_password": "Olvidaste tu contraseña"
+                    }
+                },
+                "link": {
+                    "forgot_password": "Olvidaste tu contraseña",
+                    "register": {
+                        "text": "No tienes una cuenta?",
+                        "button": "Registrate"
                     }
                 }
             }
